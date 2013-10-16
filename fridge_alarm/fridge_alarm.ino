@@ -4,11 +4,11 @@ const int ledPin = 13;
 
 //Note you dont need to call pinMode for tone() and analog () pins
 
-const int fridgeThreshold = 500; // Photocell value for an open fridge
+const int fridgeThreshold = 400; // Photocell value for an open fridge
 
 void setup()
 { 
-    pinMode (ledPin, OUTPUT); // Allow us to turn the Arduino's onbaord LED on 
+    pinMode (ledPin, OUTPUT); // Allow us to turn the Arduino's onboard LED on 
     //pinMode (lightSensorPin, INPUT);
     Serial.begin (9600);
     
@@ -24,20 +24,22 @@ void setup()
 
 void loop()
 {
-  Serial.print (lightSensorPin);
-  Serial.print('\n');
   if (analogRead(lightSensorPin) > fridgeThreshold) // Read the light sensor to see if the fridge is open
-  {
-      while (true) // if you caught a thief redhanded, play the siren forever!
-      { 
-          Serial.print(analogRead(lightSensorPin));
-          Serial.print('\n');
-          for (int i = 1000; i < 1700; i++) // Change start value and end value to change siren length and pitch
-          {
-            tone (8, i); // Play the tone to the speaker on pin 8
-            delay (1); // change delay to change siren speed. try delayMilliseconds () too
-          }
-      }
-  }
+    { 
+      Serial.print("true ");
+      Serial.print(analogRead(lightSensorPin));
+      Serial.print('\n');
+      for (int i = 500; i < 600; i++) // Change start value and end value to change siren length and pitch
+        {
+          tone (8, i); // Play the tone to the speaker on pin 8
+          delay (10); // change delay to change siren speed. try delayMilliseconds () too
+        }
+    } else {
+  noTone (8);
+  Serial.print("false "); // for debugging purposes
+  Serial.print(analogRead(lightSensorPin));
+  Serial.print('\n');
+    }
+  
 }
             
