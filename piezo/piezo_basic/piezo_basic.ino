@@ -2,7 +2,7 @@
  * lights an LED when the Piezo is tapped
  */
 
-const int sensorPin = 0;  // the analog pin connected to the sensor
+const int sensorPin = A0;  // the analog pin connected to the sensor
 const int ledPin  = 13;     // pin connected to LED
 const int THRESHOLD = 100;
 
