@@ -21,14 +21,12 @@ void loop()
     digitalWrite(ledPin, HIGH);
     delay(1000);  // to make the LED visible
     Serial.print("true ");
-    Serial.print(analogRead(sensorPin));
-    Serial.print('\n');
+    Serial.println(analogRead(sensorPin));
   }
   else
     digitalWrite(ledPin, LOW);
     Serial.print("false ");
-    Serial.print(analogRead(sensorPin));
-    Serial.print('\n');
+    Serial.println(analogRead(sensorPin));
 }
       
     
